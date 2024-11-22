@@ -13,6 +13,13 @@ int hashFunction(int value) {
     return value % hashTableLength;
 }
 
+void printHashTable(Node *table) {
+    for (int i = 0; i < hashTableLength; i++) {
+        cout << i << "|" << table[i].value << endl;
+    }
+    cout << "\n\n";
+}
+
 void printList(Node *p) {
     cout << "Imprimendo la lista actual:\n\n";
     while (p) {
@@ -82,7 +89,7 @@ int main() {
             } break;
 
             case 4: {
-                
+                printHashTable(hashTable);
             } break;
 
             default:
