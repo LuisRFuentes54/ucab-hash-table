@@ -87,15 +87,15 @@ int main() {
     int resp;
 
     do {
-		cout << "MENU\n\n";
-		cout << "1) Imprimir lista\n";
-		cout << "2) Insertar elemento\n";
-		cout << "3) Eliminar elemento\n";
+        cout << "MENU\n\n";
+        cout << "1) Imprimir lista\n";
+        cout << "2) Insertar elemento\n";
+        cout << "3) Eliminar elemento\n";
         cout << "4) Imprimir hash\n";
         cout << "5) Consultar si un elemento ya existe\n";
-		cout << "0) Salir\n\n";
-		cout << "\tMarque su opcion: ";
-		cin >> resp;
+        cout << "0) Salir\n\n";
+        cout << "\tMarque su opcion: ";
+        cin >> resp;
         switch (resp) {
             case 0: {
                 cout << "Finalizando programa";            
