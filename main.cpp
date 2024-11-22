@@ -31,6 +31,19 @@ bool addNode(Node **p, int value) {
     return true;
 }
 
+void deleteNode(Node **p, int value) {
+    Node *aux = *p;
+    while (aux && aux -> value != value) aux = aux -> next; 
+    if (!aux) return;
+    else if (aux == *p) *p = (*p) -> next;
+    else {
+        Node *aux2 = *p;
+        while (aux2 -> next != aux) aux2 = aux2 -> next;
+        aux2 -> next = aux -> next;
+    }
+    delete aux;
+}
+
 int main() {
     Node *list = NULL;
     Node *hashTable = new Node[hashTableLength] {};
@@ -40,7 +53,7 @@ int main() {
 		cout << "MENU\n\n";
 		cout << "1) Imprimir lista\n";
 		cout << "2) Insertar elemento\n";
-		cout << "4) Eliminar elemento\n";
+		cout << "3) Eliminar elemento\n";
         cout << "4) Imprimir hash\n";
 		cout << "0) Salir\n\n";
 		cout << "\tMarque su opcion: ";
@@ -62,7 +75,10 @@ int main() {
             } break;
 
             case 3: {
-                
+                int element;
+                cout << "\tIngrese el elemento a insertar: ";
+                cin >> element;
+                deleteNode(&list, element);
             } break;
 
             case 4: {
