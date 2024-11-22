@@ -33,7 +33,7 @@ bool addNode(Node **p, int value) {
 
 int main() {
     Node *list = NULL;
-    Node hashTable[hashTableLength] = {};
+    Node *hashTable = new Node[hashTableLength] {};
     int resp;
 
     do {
