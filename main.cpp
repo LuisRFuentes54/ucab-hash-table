@@ -13,6 +13,15 @@ int hashFunction(int value) {
     return value % hashTableLength;
 }
 
+void printList(Node *p) {
+    cout << "Imprimendo la lista actual:\n\n";
+    while (p) {
+        cout << "|" << p -> value << "| -> ";
+        p = p -> next;
+    }
+    cout << "NULL\n\n";
+}
+
 bool addNode(Node **p, int value) {
     Node *newElement = new Node;
     if (!newElement) return false;
@@ -23,7 +32,7 @@ bool addNode(Node **p, int value) {
 }
 
 int main() {
-    Node *list;
+    Node *list = NULL;
     Node hashTable[hashTableLength] = {};
     int resp;
 
@@ -32,7 +41,7 @@ int main() {
 		cout << "1) Imprimir lista\n";
 		cout << "2) Insertar elemento\n";
 		cout << "4) Eliminar elemento\n";
-        cout << "4) Imprimir hash";
+        cout << "4) Imprimir hash\n";
 		cout << "0) Salir\n\n";
 		cout << "\tMarque su opcion: ";
 		cin >> resp;
@@ -41,9 +50,8 @@ int main() {
                 cout << "Finalizando programa";            
             } break;
 
-
             case 1: {
-                
+                printList(list);
             } break;
 
             case 2: {
