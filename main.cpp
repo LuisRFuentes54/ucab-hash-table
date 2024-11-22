@@ -13,6 +13,15 @@ int hashFunction(int value) {
     return value % hashTableLength;
 }
 
+bool addNode(Node **p, int value) {
+    Node *newElement = new Node;
+    if (!newElement) return false;
+    newElement -> value = value;
+    newElement -> next = *p;
+    *p = newElement;
+    return true;
+}
+
 int main() {
     Node *list;
     Node hashTable[hashTableLength] = {};
@@ -35,11 +44,13 @@ int main() {
 
             case 1: {
                 
-                
             } break;
 
             case 2: {
-                
+                int element;
+                cout << "\tIngrese el elemento a insertar: ";
+                cin >> element;
+                if (!addNode(&list, element)) cout << "No hay suficiente espacio en memoria para insertar un nuevo elemento\n";
             } break;
 
             case 3: {
