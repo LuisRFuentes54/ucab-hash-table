@@ -8,6 +8,7 @@ struct Node {
 };
 
 int hashTableLength = 10;
+Node *hashTable = new Node[hashTableLength] {};
 
 int hashFunction(int value) {
     return value % hashTableLength;
@@ -18,6 +19,20 @@ void printHashTable(Node *table) {
         cout << i << "|" << table[i].value << endl;
     }
     cout << "\n\n";
+}
+
+bool addNodeToHash(Node *p) {
+    int indexHash = hashFunction(p -> value);
+    int i = indexHash;
+    do {
+        if (!hashTable[i].value) {
+            hashTable[i] = *p;
+            return true;
+        }
+        if (i < hashTableLength - 1) i++;
+        else i = 0;
+    } while (indexHash != i);
+    return false;
 }
 
 void printList(Node *p) {
@@ -33,6 +48,10 @@ bool addNode(Node **p, int value) {
     Node *newElement = new Node;
     if (!newElement) return false;
     newElement -> value = value;
+    if (!addNodeToHash(newElement)) {
+        delete newElement;
+        return false;
+    }
     newElement -> next = *p;
     *p = newElement;
     return true;
@@ -53,7 +72,6 @@ void deleteNode(Node **p, int value) {
 
 int main() {
     Node *list = NULL;
-    Node *hashTable = new Node[hashTableLength] {};
     int resp;
 
     do {
