@@ -35,6 +35,18 @@ bool addNodeToHash(Node *p) {
     return false;
 }
 
+bool existsNode(int value) {
+    int indexHash = hashFunction(value);
+    int i = indexHash;
+    do {
+        if (!hashTable[i].value) return false;
+        else if (hashTable[i].value == value) return true;
+        else if (i < hashTableLength - 1) i++;
+        else i = 0;
+    } while (hashTable[i].value != 0 && indexHash != i);
+    return false;
+}
+
 void printList(Node *p) {
     cout << "Imprimendo la lista actual:\n\n";
     while (p) {
@@ -80,6 +92,7 @@ int main() {
 		cout << "2) Insertar elemento\n";
 		cout << "3) Eliminar elemento\n";
         cout << "4) Imprimir hash\n";
+        cout << "5) Consultar si un elemento ya existe\n";
 		cout << "0) Salir\n\n";
 		cout << "\tMarque su opcion: ";
 		cin >> resp;
@@ -101,13 +114,21 @@ int main() {
 
             case 3: {
                 int element;
-                cout << "\tIngrese el elemento a insertar: ";
+                cout << "\tIngrese el elemento a eliminar: ";
                 cin >> element;
                 deleteNode(&list, element);
             } break;
 
             case 4: {
                 printHashTable(hashTable);
+            } break;
+
+            case 5: {
+                int element;
+                cout << "\tIngrese el elemento a buscar: ";
+                cin >> element;
+                if (existsNode(element)) cout << "El valor indicado ya ha sido agregado a la lista" << endl; 
+                else cout << "El valor indicado no ha sido agregado a la lista" << endl;
             } break;
 
             default:
